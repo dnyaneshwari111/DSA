@@ -1,0 +1,57 @@
+package stack;
+
+public class ValidParenthesis {
+
+	private Boolean isValid(String s) 
+	{
+		char[] stack=new char[s.length()];
+		int top=-1;
+				
+		for(char c:s.toCharArray()) 
+		{
+			
+			if(c=='('||c=='{'||c=='[') 
+			
+			{
+				stack[++top]=c;
+			}
+			else
+			{
+				if(top==-1)
+				{
+					return false;
+				}
+			
+				char open=stack[top--];
+			
+				
+			if (c==')'&& open!='(')
+			{
+				return false;
+			}
+			if (c=='}'&& open!='{')
+			{
+				return false;
+			}
+			if (c==']'&& open!='[')
+			{
+				return false;
+			}
+		}
+			
+		}
+		return top==-1;
+	}
+	
+	public static void main(String[] args) {
+		
+		String input="()[]{}";
+		String input1="(([]{}";
+		
+		ValidParenthesis vp= new ValidParenthesis();
+		System.out.println("The result is :"+vp.isValid(input));
+		System.out.println("The result is :"+vp.isValid(input1));
+		
+	}
+
+}
